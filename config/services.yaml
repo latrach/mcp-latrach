@@ -17,3 +17,6 @@ services:
         arguments:
             $dataDir: '%app.data_dir%'
 
+    App\Mcp\McpServer:
+        public: true
+

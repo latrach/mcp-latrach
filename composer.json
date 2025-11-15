@@ -28,18 +28,13 @@
             "App\\Tests\\": "tests/"
         }
     },
-    "scripts": {
-        "post-install-cmd": [
-            "@php bin/console cache:clear"
-        ]
-    },
     "config": {
         "allow-plugins": {
-            "php-http/discovery": true
+            "php-http/discovery": true,
+            "symfony/runtime": true
         },
         "sort-packages": true
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "RC",
     "prefer-stable": true
 }
-
