@@ -1,6 +1,6 @@
 # MCP Server - Gestion de Dossiers Sinistres
 
-Serveur MCP (Model Context Protocol) basé sur Symfony 7.4 pour la gestion de dossiers sinistres.
+Serveur MCP (Model Context Protocol) basé sur Symfony 7.3 pour la gestion de dossiers sinistres.
 
 ## Installation
 
