@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "sinistre": {
+      "command": "php",
+      "args": [
+        "/Users/slatrach/Projets/mcp-latrach/bin/mcp-server"
+      ],
+      "env": {
+        "APP_ENV": "dev"
+      }
+    }
+  }
+}
+

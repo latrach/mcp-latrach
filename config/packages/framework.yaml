@@ -1,0 +1,7 @@
+framework:
+    secret: '%env(APP_SECRET)%'
+    serializer:
+        enabled: true
+    validation:
+        enabled: true
+

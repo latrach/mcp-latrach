@@ -1,0 +1,34 @@
+#!/usr/bin/env php
+<?php
+
+use App\Kernel;
+use Symfony\Component\Console\Input\ArgvInput;
+use Symfony\Component\Dotenv\Dotenv;
+use Symfony\Component\ErrorHandler\Debug;
+
+if (!in_array(PHP_SAPI, ['cli', 'phpdbg', 'embed'], true)) {
+    throw new RuntimeException('This script must be run from the command line.');
+}
+
+require __DIR__.'/../vendor/autoload.php';
+
+if (!class_exists(Dotenv::class)) {
+    throw new RuntimeException('Please run "composer require symfony/dotenv" to load the ".env" files configuring the application.');
+}
+
+(new Dotenv())->bootEnv(__DIR__.'/../.env');
+
+if ($_SERVER['APP_DEBUG']) {
+    umask(0000);
+
+    if (class_exists(Debug::class)) {
+        Debug::enable();
+    }
+}
+
+$kernel = new Kernel($_SERVER['APP_ENV'], (bool) $_SERVER['APP_DEBUG']);
+$kernel->boot();
+
+$application = new \Symfony\Component\Console\Application();
+$application->run(new ArgvInput());
+

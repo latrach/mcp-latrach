@@ -1,0 +1,3 @@
+# Configuration des routes Symfony (optionnel pour MCP)
+# Le serveur MCP fonctionne principalement via stdin/stdout
+

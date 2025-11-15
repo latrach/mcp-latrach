@@ -1,0 +1,9 @@
+/.build/
+/vendor/
+/.env
+/.env.local
+/.env.*.local
+/var/
+/public/bundles/
+/phpunit.xml
+

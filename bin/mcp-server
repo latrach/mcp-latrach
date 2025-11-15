@@ -1,0 +1,38 @@
+#!/usr/bin/env php
+<?php
+
+use App\Kernel;
+use App\Mcp\McpServer;
+use Symfony\Component\Dotenv\Dotenv;
+
+if (!in_array(PHP_SAPI, ['cli', 'phpdbg', 'embed'], true)) {
+    throw new RuntimeException('This script must be run from the command line.');
+}
+
+require __DIR__.'/../vendor/autoload.php';
+
+if (!class_exists(Dotenv::class)) {
+    throw new RuntimeException('Please run "composer require symfony/dotenv" to load the ".env" files configuring the application.');
+}
+
+(new Dotenv())->bootEnv(__DIR__.'/../.env');
+
+$kernel = new Kernel($_SERVER['APP_ENV'], (bool) $_SERVER['APP_DEBUG']);
+$kernel->boot();
+
+$container = $kernel->getContainer();
+$mcpServer = $container->get(McpServer::class);
+
+// Lire depuis stdin
+$input = file_get_contents('php://stdin');
+
+if (empty($input)) {
+    exit(1);
+}
+
+// Traiter la requête MCP
+$response = $mcpServer->handleRequest($input);
+
+// Écrire la réponse sur stdout
+echo $response . "\n";
+
